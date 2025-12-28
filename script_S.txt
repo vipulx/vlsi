@@ -1,0 +1,157 @@
+#!/bin/bash
+
+while true
+do
+echo "------------------------------------"
+echo "SHELL SCRIPT PROGRAMS MENU"
+echo "1. Find multiples of 3"
+echo "2. Check triangle type"
+echo "3. Arithmetic operations"
+echo "4. Fibonacci series"
+echo "5. Roots of quadratic equation"
+echo "6. Descending order using for loop"
+echo "7. Swap two numbers"
+echo "8. Find (a+b)^2"
+echo "9. Voting eligibility"
+echo "10. Calculate SGPA"
+echo "11. Exit"
+echo "------------------------------------"
+echo "Enter your choice:"
+read ch
+
+case $ch in
+
+1)
+echo "Enter a number:"
+read n
+echo "Multiples of 3:"
+for ((i=1;i<=n;i++))
+do
+  if [ $((i%3)) -eq 0 ]; then
+    echo $i
+  fi
+done
+;;
+
+2)
+echo "Enter three sides:"
+read a b c
+if [ $a -eq $b ] && [ $b -eq $c ]; then
+  echo "Equilateral Triangle"
+elif [ $a -eq $b ] || [ $b -eq $c ] || [ $a -eq $c ]; then
+  echo "Isosceles Triangle"
+else
+  echo "Scalene Triangle"
+fi
+;;
+
+3)
+echo "Enter two numbers:"
+read a b
+echo "Addition: $((a+b))"
+echo "Subtraction: $((a-b))"
+echo "Multiplication: $((a*b))"
+if [ $b -ne 0 ]; then
+  echo "Division: $((a/b))"
+else
+  echo "Division by zero not possible"
+fi
+;;
+
+4)
+echo "Enter number of terms:"
+read n
+a=0
+b=1
+echo "Fibonacci series:"
+for ((i=0;i<n;i++))
+do
+  echo -n "$a "
+  fn=$((a+b))
+  a=$b
+  b=$fn
+done
+echo
+;;
+
+5)
+echo "Enter a b c:"
+read a b c
+d=$((b*b - 4*a*c))
+if [ $d -gt 0 ]; then
+  r1=$(echo "scale=2; (-$b + sqrt($d))/(2*$a)" | bc)
+  r2=$(echo "scale=2; (-$b - sqrt($d))/(2*$a)" | bc)
+  echo "Roots are: $r1 and $r2"
+elif [ $d -eq 0 ]; then
+  r=$(echo "scale=2; -$b/(2*$a)" | bc)
+  echo "Root is: $r"
+else
+  echo "Roots are imaginary"
+fi
+;;
+
+6)
+echo "Enter a number:"
+read n
+for ((i=n;i>=1;i--))
+do
+  echo $i
+done
+;;
+
+7)
+echo "Enter two numbers:"
+read a b
+temp=$a
+a=$b
+b=$temp
+echo "After swapping:"
+echo "a = $a"
+echo "b = $b"
+;;
+
+8)
+echo "Enter a and b:"
+read a b
+echo "(a+b)^2 = $(((a+b)*(a+b)))"
+;;
+
+9)
+echo "Enter age:"
+read age
+if [ $age -ge 18 ]; then
+  echo "Eligible for voting"
+else
+  echo "Not eligible for voting"
+fi
+;;
+
+10)
+echo "Enter number of subjects:"
+read n
+total=0
+credits=0
+for ((i=1;i<=n;i++))
+do
+  echo "Enter grade point for subject $i:"
+  read gp
+  echo "Enter credits for subject $i:"
+  read cr
+  total=$((total + gp*cr))
+  credits=$((credits + cr))
+done
+sgpa=$(echo "scale=2; $total/$credits" | bc)
+echo "SGPA = $sgpa"
+;;
+
+11)
+echo "Exiting program..."
+exit
+;;
+
+*)
+echo "Invalid choice"
+;;
+
+esac
+done
