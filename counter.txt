@@ -10,6 +10,7 @@ vi filename_tb.v
 nclaunch -new
 
 Vlog compiler > launch ealborate > launch simnuilator (tb)
+send to wavform 
 
 
 
