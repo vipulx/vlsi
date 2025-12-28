@@ -2,6 +2,9 @@ Below are **simple Bash (shell) scripts** for each problem.
 You can copy-paste and run them one by one.
 (Use `chmod +x filename.sh` and `./filename.sh` to run)
 
+
+chmod +x  
+./filename.sh
 ---
 
 ## 1. Find multiples of 3 (up to n)
