@@ -1,3 +1,18 @@
+Cadence
+------------------------
+csh
+source ./home/cad/cshrc
+ 
+mkdir <folder>
+vi filename.v
+vi filename_tb.v
+
+nclaunch -new
+
+Vlog compiler > launch ealborate > launch simnuilator (tb)
+
+
+
 
 
 4_counter_test.v
