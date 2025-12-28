@@ -199,10 +199,3 @@ echo "SGPA = $sgpa"
 
 ---
 
-### 👉 If you want:
-
-* **All programs in one single shell file**
-* **Exam-ready explanation**
-* **Output screenshots format**
-
-Just tell me 👍
