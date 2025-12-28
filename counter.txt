@@ -1,0 +1,110 @@
+
+
+4_counter_test.v
+--------------
+module counter_test;
+reg clk, rst, m;
+wire [3:0] count;
+
+initial begin
+  clk = 0;
+  rst = 0; 
+  #25 rst = 1;
+end
+
+initial begin
+  m = 1; 
+  #600;
+  m = 0;
+  rst = 0; 
+  #25 rst = 1;
+  #500;
+  m = 1;
+end
+
+counter counter1 (
+  .clk(clk),
+  .m(m),
+  .rst(rst),
+  .count(count)
+);
+
+always #5 clk = ~clk;
+
+initial #1500 $finish;
+endmodule
+
+
+
+4_counter.v
+-------------------------
+module counter(clk, m, rst, count);
+input clk, m, rst;
+output reg [3:0] count;
+
+always @(posedge clk or negedge rst) begin
+  if (!rst)
+    count <= 4'b0000;
+  else if (m)
+    count <= count + 1;
+  else
+    count <= count - 1;
+end
+
+endmodule
+
+
+
+
+8_Counter.v
+---------------------
+module counter(clk, m, rst, count);
+input clk, m, rst;
+output reg [7:0] count;
+
+always @(posedge clk or negedge rst) begin
+  if (!rst)
+    count <= 8'b00000000;
+  else if (m)
+    count <= count + 1;
+  else
+    count <= count - 1;
+end
+
+endmodule
+
+
+8_Counter_test.v
+---------------------
+module counter_test;
+reg clk, rst, m;
+wire [7:0] count;
+
+initial begin
+  clk = 0;
+  rst = 0;
+  #25 rst = 1;
+end
+
+initial begin
+  m = 1; 
+  #600;
+  m = 0;
+  rst = 0;
+  #25 rst = 1;
+  #500;
+  m = 1;
+end
+
+counter counter1 (
+  .clk(clk),
+  .m(m),
+  .rst(rst),
+  .count(count)
+);
+
+always #5 clk = ~clk;
+
+initial #1500 $finish;
+endmodule
+
