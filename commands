@@ -1,0 +1,53 @@
+VIM EDITOR COMMANDS CHEAT SHEET
+===============================
+
+1. UNDO AND REDO
+----------------
+u                   : Undo the last change
+Ctrl + r            : Redo a change that was undone
+
+2. SEARCH AND REPLACE
+---------------------
+:%s/pat/rep/g       : Replace "pat" with "rep" in ALL lines and ALL occurrences
+:%s/pat/rep/        : Replace "pat" with "rep" in ALL lines (first occurrence only)
+?pattern            : Search backwards for "pattern"
+f{char}             : Search for {char} forward along the single/current line
+cw                  : Change word (delete word and enter Insert mode)
+r{char}             : Replace the single character under cursor with {char}
+
+3. SORTING AND FILTERING
+------------------------
+:sort!              : Sort lines in descending order
+:sort               : Sort lines in ascending order
+!{motion}{command}  : Filter text through an external command (e.g., !Gsort)
+
+4. NAVIGATION AND MOVEMENT
+--------------------------
+:set nu             : Set/Display line numbers
+:6                  : Move cursor to line number 6
+6G                  : Alternate command to move to line number 6
+$                   : Move to the end of the current line
+w                   : Move forward one word
+b                   : Move backward one word
+e                   : Move to the end of the current word
+[[                  : Move backward to previous section
+]]                  : Move forward to next section
+gd                  : Jump to local variable definition
+Ctrl + g            : Check current file status (name, line count, position)
+m{a-z}              : Mark current position (e.g., ma). Jump back with 'a
+
+5. COPY, PASTE, AND EDITING
+---------------------------
+yy                  : Copy (yank) current line
+p                   : Paste after cursor
+P                   : Paste before cursor
+3yy                 : Copy 3 lines (starting from cursor)
+5p                  : Paste the copied text 5 times
+J                   : Join current line with the line below (joins words across lines)
+Ctrl + k {c1}{c2}   : Insert digraph (Insert Mode only). E.g., Ctrl+k OK = ✓
+
+6. MACROS (RECORDING)
+---------------------
+q{a-z}              : Start recording macro into register a-z
+q                   : Stop recording
+@{a-z}              : Execute/Display the macro stored in register a-z
