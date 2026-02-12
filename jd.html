@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samsung Semiconductor Interview Tracker</title>
+
+<style>
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background:#f2f4f8;
+    display:flex;
+}
+
+/* Sidebar */
+.sidebar{
+    width:260px;
+    background:#1428A0;
+    color:white;
+    padding:25px;
+    height:100vh;
+}
+
+.sidebar h2{
+    margin-bottom:30px;
+    font-weight:500;
+}
+
+.stage-btn{
+    width:100%;
+    padding:10px;
+    margin-bottom:12px;
+    border:none;
+    border-radius:5px;
+    background:#1f3bb3;
+    color:white;
+    cursor:pointer;
+    text-align:left;
+}
+
+.stage-btn:hover{
+    background:#2e4df0;
+}
+
+/* Main Content */
+.main{
+    flex:1;
+    padding:40px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.08);
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.company{
+    font-size:22px;
+    font-weight:600;
+    color:#1428A0;
+}
+
+.status{
+    font-size:14px;
+    color:#555;
+}
+
+/* Progress */
+.progress-container{
+    display:flex;
+    justify-content:space-between;
+    margin-top:50px;
+    position:relative;
+}
+
+.progress-container::before{
+    content:"";
+    position:absolute;
+    top:18px;
+    left:0;
+    height:4px;
+    width:100%;
+    background:#e0e0e0;
+    z-index:0;
+}
+
+.progress{
+    position:absolute;
+    top:18px;
+    left:0;
+    height:4px;
+    background:#1428A0;
+    z-index:1;
+    transition:0.4s ease;
+}
+
+.step{
+    text-align:center;
+    z-index:2;
+    width:120px;
+}
+
+.circle{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:#e0e0e0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:auto;
+    font-weight:bold;
+}
+
+.circle.active{
+    background:#1428A0;
+    color:white;
+}
+
+.label{
+    margin-top:8px;
+    font-size:13px;
+}
+
+.date{
+    font-size:11px;
+    color:#888;
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Update Stage</h2>
+    <button class="stage-btn" onclick="updateStage(1)">Applied</button>
+    <button class="stage-btn" onclick="updateStage(2)">Screening Done</button>
+    <button class="stage-btn" onclick="updateStage(3)">JD Released</button>
+    <button class="stage-btn" onclick="updateStage(4)">Technical</button>
+    <button class="stage-btn" onclick="updateStage(5)">Final Round</button>
+    <button class="stage-btn" onclick="updateStage(6)">Selected</button>
+</div>
+
+<div class="main">
+    <div class="card">
+        <div class="header">
+            <div class="company">Samsung Semiconductor</div>
+            <div class="status" id="currentStatus">
+                Current Status: Applied
+            </div>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress" id="progress"></div>
+
+            <div class="step">
+                <div class="circle active">1</div>
+                <div class="label">Applied</div>
+            </div>
+
+            <div class="step">
+                <div class="circle">2</div>
+                <div class="label">Screening</div>
+                <div class="date">Completed: 11-02-2025</div>
+            </div>
+
+            <div class="step">
+                <div class="circle">3</div>
+                <div class="label">JD Released</div>
+                <div class="date">Waiting for Acceptance</div>
+            </div>
+
+            <div class="step">
+                <div class="circle">4</div>
+                <div class="label">Technical</div>
+            </div>
+
+            <div class="step">
+                <div class="circle">5</div>
+                <div class="label">Final</div>
+            </div>
+
+            <div class="step">
+                <div class="circle">6</div>
+                <div class="label">Offer</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const circles = document.querySelectorAll(".circle");
+const progress = document.getElementById("progress");
+const statusText = document.getElementById("currentStatus");
+
+function updateStage(stage){
+    circles.forEach((circle,index)=>{
+        if(index < stage){
+            circle.classList.add("active");
+        } else {
+            circle.classList.remove("active");
+        }
+    });
+
+    const percent = ((stage-1)/(circles.length-1))*100;
+    progress.style.width = percent + "%";
+
+    const names = [
+        "Applied",
+        "Screening Completed (11-02-2025)",
+        "JD Released – Waiting for Acceptance",
+        "Technical Interview",
+        "Final Round",
+        "Selected / Offer Released"
+    ];
+
+    statusText.innerText = "Current Status: " + names[stage-1];
+}
+</script>
+
+</body>
+</html>
